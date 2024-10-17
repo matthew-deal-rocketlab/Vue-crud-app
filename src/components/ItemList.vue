@@ -26,7 +26,9 @@ const emit = defineEmits<{
     <ul>
       <!-- v-for is used to iterate over the items array -->
       <li v-for="item in items" :key="item.id" class="flex flex-row gap-2">
-        <span class="cursor-pointer">Item: {{ item.name }}</span>
+        <span class="cursor-pointer first-letter:uppercase">
+          {{ item.name }}</span
+        >
         <span
           @click="emit('selectItem', item)"
           class="text-yellow-500 cursor-pointer"
