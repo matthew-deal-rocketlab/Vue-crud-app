@@ -55,18 +55,14 @@ const addItem = (item: Omit<Item, 'id'>) => {
 
 const updateItem = (updatedItem: Item) => {
   const index = items.value.findIndex(item => item.id === updatedItem.id)
-  if (index !== -1) {
-    items.value[index] = updatedItem
-  }
+  if (index !== -1) items.value[index] = updatedItem
   selectedItem.value = null
   isEditing.value = false
 }
 
 const deleteItem = (id: number) => {
   items.value = items.value.filter(item => item.id !== id)
-  if (selectedItem.value?.id === id) {
-    selectedItem.value = null
-  }
+  if (selectedItem.value?.id === id) selectedItem.value = null
 }
 
 const selectItem = (item: Item) => {
@@ -74,9 +70,7 @@ const selectItem = (item: Item) => {
   isEditing.value = false
 }
 
-const editItem = () => {
-  isEditing.value = true
-}
+const editItem = () => (isEditing.value = true)
 </script>
 
 <template>
@@ -93,8 +87,10 @@ const editItem = () => {
       </div>
       <div class="flex flex-col gap-4 pl-4">
         <div>
+          <!-- You probably didn't notice, but this is a resuable component, not a HTML button -->
           <Button @click="fetchRandomPokemon">Fetch A Random Pokémon</Button>
           <div class="mt-4">
+            <!-- No Ternaries here, instead Vue uses what is bassically just if else -->
             <div v-if="loading">Loading...</div>
             <div v-else-if="error">Error: {{ error.message }}</div>
             <div
@@ -110,6 +106,9 @@ const editItem = () => {
         </div>
       </div>
     </div>
+    <!-- The v-if directive is used to conditionally render the ItemDetails component -->
+    <!-- In React we would use the ternary operator to achieve the same result -->
+    <!-- selectedItem && ItemDetails -->
     <ItemDetails
       v-if="selectedItem"
       :item="selectedItem"
