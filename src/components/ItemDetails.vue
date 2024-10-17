@@ -32,7 +32,7 @@ const saveChanges = () => {
 
 <template>
   <div>
-    <h2 class="mb-2 text-xl font-semibold">Item Details</h2>
+    <h2 class="mb-2 text-xl font-semibold">Edit Items</h2>
     <div v-if="!isEditing">
       <p><strong>Name:</strong> {{ item.name }}</p>
       <p><strong>Description:</strong> {{ item.description }}</p>
