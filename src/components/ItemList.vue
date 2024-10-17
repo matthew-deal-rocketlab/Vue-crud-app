@@ -25,10 +25,13 @@ const emit = defineEmits<{
     <h2 class="mb-2 text-xl font-semibold">Items</h2>
     <ul>
       <!-- v-for is used to iterate over the items array -->
-      <li v-for="item in items" :key="item.id" class="mb-2">
-        <span @click="emit('selectItem', item)" class="cursor-pointer">{{
-          item.name
-        }}</span>
+      <li v-for="item in items" :key="item.id" class="flex flex-row gap-2">
+        <span class="cursor-pointer">Item: {{ item.name }}</span>
+        <span
+          @click="emit('selectItem', item)"
+          class="text-yellow-500 cursor-pointer"
+          >Edit</span
+        >
         <button @click="emit('deleteItem', item.id)" class="ml-2 text-red-500">
           Delete
         </button>
